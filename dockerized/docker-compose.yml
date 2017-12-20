@@ -1,0 +1,24 @@
+version: '2'
+services:
+  elixir:
+    image: x/elixir
+    container_name: server
+    ports:
+      - "$PHX_PORT:$PHX_PORT"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER: $USER
+        PASS: $PASS
+        UID: $UID
+        GROUP: $GROUP
+        GID: $GID
+        NODE_VERSION: $NODE_VERSION
+    environment:
+      PHX_PORT: $PHX_PORT
+    entrypoint: ['/bin/bash']
+    command: ['/usr/local/script/docker_init.sh']
+    volumes:
+      - ..:/usr/local/src/red
+      - ./script:/usr/local/script
