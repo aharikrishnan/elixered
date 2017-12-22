@@ -18,6 +18,7 @@ defmodule RedWeb.Router do
 
     get "/", PageController, :index
     get "/ping", PingController, :index
+    get "/playground", PlaygroundController, :index
   end
 
   # Other scopes may use custom stacks.
