@@ -14,68 +14,9 @@
 
 <div ng-app='todoApp'>
   <h2>Todo</h2>
-  <div ng-controller="TodoController as todoCtrl">
-    <span>{{todoCtrl.remaining()}} of {{todoCtrl.todos.length}} remaining</span>
-    [ <a href="" ng-click="todoCtrl.archive()">archive</a> ]
-    <ul class="unstyled">
-
-      <li ng-repeat="todo in todoCtrl.todos" ng-if='todoCtrl.isActive(todo)'>
-        <label class="checkbox">
-          <input type="checkbox" ng-model="todo.status" ng-true-value="'done'" ng-false-value="'pending'">
-          <span class="done-{{todo.status}}">{{todo.text}}</span>
-        </label>
-      </li>
-
-    </ul>
-    <form ng-submit="todoCtrl.addTodo()">
-      <input type="text" ng-model="todoCtrl.todoText" size="30" placeholder="add new todo here" required='required'>
-      <input class="btn-primary" type="submit" value="add">
-    </form>
-  </div>
+  <todo-list> </todo-list>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
-<script>
-var app = angular.module('todoApp', []);
-app
-.controller('TodoController', function(){
-  var todoCtrl = this;
-  /**
-    status: done | pending | archived
-   */
-  todoCtrl.todos = [
-  {text: 'Learn to code in Angular JS 1.6.6', status:'done'},
-  {text: 'Learn more about the framework', status:'pending'},
-  {text: 'Extend something awesome', status:'pending'},
-  {text: 'Build some great stuff ', status:'pending'}
-  ];
-  todoCtrl.getStatusValue = function(status){
-    return status === 'done';
-  };
-  todoCtrl.remaining = function(){
-    return '?';
-  };
-  todoCtrl.addTodo = function(){
-    if(todoCtrl.todoText && todoCtrl.todoText.length){
-      todoCtrl.todos.push({text: todoCtrl.todoText, status: 'pending'})
-        console.log('added todo!',  todoCtrl.todoText);
-    }
-  };
+<script src="/js/todo.js"></script>
 
-  todoCtrl.archive = function(){
-    console.log('archived todo!');
-    angular.forEach(todoCtrl.todos, function(item, index){
-      if(item.status === 'done'){
-        item.status = 'archived';
-        console.log(item)
-      }
-    });
-  };
-
-  todoCtrl.isActive= function(item){
-    console.log(item)
-      return item.status !== 'archived';
-  };
-
-});
-</script>
