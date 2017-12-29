@@ -1,12 +1,29 @@
 version: '2'
+
 services:
+  varnish:
+    image: x/varnish
+    container_name: x-varnish
+    build:
+      context: ./x/varnish
+      dockerfile: Dockerfile
+    ports:
+      - "$VARNISH_PORT:$VARNISH_PORT"
+    environment:
+      - VARNISH_PORT:$VARNISH_PORT
+    entrypoint: ['/bin/sh']
+    #command: ['/usr/local/script/varnish/init.sh']
+    volumes:
+      - ./x/varnish/default.vcl:/etc/varnish/default.vcl
+      - ./x/varnish/script:/usr/local/script/varnish/
+
   elixir:
     image: x/elixir
-    container_name: server
+    container_name: x-elixir
     ports:
       - "$PHX_PORT:$PHX_PORT"
     build:
-      context: .
+      context: ./x/elixir/
       dockerfile: Dockerfile
       args:
         USER: $USER
@@ -18,7 +35,22 @@ services:
     environment:
       PHX_PORT: $PHX_PORT
     entrypoint: ['/bin/bash']
-    command: ['/usr/local/script/docker_init.sh']
+    command: ['/usr/local/script/elixir/init.sh']
     volumes:
       - ..:/usr/local/src/red
-      - ./script:/usr/local/script
+      - ./x/elixir/script:/usr/local/script/elixir
+
+  base:
+    image: x/base
+    container_name: x-base
+    build:
+      context: ./x/base/
+      dockerfile: Dockerfile
+      args:
+        USER: $USER
+        PASS: $PASS
+        UID: $UID
+        GROUP: $GROUP
+        GID: $GID
+
+
