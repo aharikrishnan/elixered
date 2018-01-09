@@ -1,0 +1,13 @@
+body{
+  font-family: 'Cabin Sketch', cursive, monospace;
+  font-size:20px;
+}
+.title{
+  font-family: 'Kalam', cursive;
+  font-weight: bold;
+  color: white;
+  background: black;
+  text-transform: uppercase;
+  padding: 5px;
+  text-align: center;
+}
