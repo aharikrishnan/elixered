@@ -32,8 +32,9 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="collapse-menu">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Playground</a></li>
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/playground">Playground</a></li>
+              <li><a href="/ed">Ed</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right login-status">
               <li class='logged-out'><button type="button" class="btn btn-default navbar-btn">Sign in</button> </li>

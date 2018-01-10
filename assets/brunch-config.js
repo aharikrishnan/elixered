@@ -5,7 +5,8 @@ exports.config = {
       joinTo: {
         "js/app.js": ['js/app.js', 'js/socket.js'],
         "js/todo.js": 'js/todo.js',
-        "js/editor.js": 'js/editor.js',
+        "js/editor.js": ['js/editor.js'],
+        "js/angular.js": ['js/angular-1.6.6.js']
       }
 
       // To use a separate vendor.js bundle, specify two files path
